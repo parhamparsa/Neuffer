@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Application\Calculator\Actions;
+
+use App\Domain\ValueObject\NumberPair;
+
+class Division implements ArithmeticInterface
+{
+
+    public function execute(NumberPair $pair)
+    {
+        // TODO: Implement execute() method.
+    }
+}
