@@ -9,7 +9,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class LogFile implements LogInterface
 {
-
     const FOLDER_NAME = 'final';
 
     public function __construct(private readonly Filesystem $filesystem)
