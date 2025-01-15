@@ -22,11 +22,12 @@ readonly class Subtraction implements ArithmeticInterface
         $result = $pair->getFirstNumber() - $pair->getSecondNumber();
         if ($result < 0) {
             throw new InvalidOperationException(sprintf(
-                "The result of is less %d and %d than zero",
+                "The result of subtraction %d by %d is less than zero",
                 $pair->getFirstNumber(),
                 $pair->getSecondNumber()
             ));
         }
+
         $this->arithmeticResult->setData($pair->getFirstNumber(), $pair->getSecondNumber(), $result);
         return $this->arithmeticResult->toArray();
     }

@@ -23,7 +23,7 @@ readonly class Multiplication implements ArithmeticInterface
         $result = $pair->getFirstNumber() * $pair->getSecondNumber();
         if ($result < 0) {
             throw new InvalidOperationException(sprintf(
-                "The result of is less %d and %d than zero",
+                "The result of multiplication %d by %d is less than zero",
                 $pair->getFirstNumber(),
                 $pair->getSecondNumber()
             ));

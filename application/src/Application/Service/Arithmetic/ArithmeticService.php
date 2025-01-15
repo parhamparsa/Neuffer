@@ -9,6 +9,7 @@ use App\Application\Service\Csv\WriteCsvService;
 use App\Application\Service\Log\LogService;
 use App\Domain\Exception\InvalidOperationException;
 use App\Infrastructure\Uuid\UuidGenerator;
+use Exception;
 
 readonly class ArithmeticService
 {
@@ -35,8 +36,8 @@ readonly class ArithmeticService
                 $result[] = $operation->execute($pair);
             } catch (InvalidOperationException $exception) {
                 $log[] = $exception->getMessage();
-            } catch (\Throwable $exception) {
-                dump($exception->getMessage());
+            } catch (\Exception $exception) {
+                throw new Exception($exception->getMessage());
             }
         }
 

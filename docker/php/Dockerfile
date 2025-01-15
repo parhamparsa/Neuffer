@@ -1,16 +1,5 @@
 FROM php:8.2-fpm
 
-#RUN apt-get update && apt-get install -y \
-#    curl \
-#    libonig-dev \
-#    libxml2-dev \
-#    zip \
-#    unzip \
-#    libzip-dev \
-#    git \
-#    ext-gd \
-#    ext-zip \
-#    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath opcache
 RUN apt-get update && apt-get install -y \
     curl \
     libonig-dev \

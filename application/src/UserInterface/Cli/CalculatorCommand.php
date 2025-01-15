@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\UserInterface\Cli;
 
 use App\Application\Service\Arithmetic\ArithmeticService;
-use App\Application\Service\Csv\ReadCsvService;
 use Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -47,11 +46,12 @@ final class CalculatorCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            dd($this->arithmeticService->Process($input->getArgument('file'), $input->getArgument('action')));
+            $result = $this->arithmeticService->Process($input->getArgument('file'), $input->getArgument('action'));
+            $output->writeln(json_encode($result, JSON_PRETTY_PRINT));
         } catch (Exception $exception) {
+            $output->writeln($exception->getMessage());
             return Command::FAILURE;
         }
-
         return Command::SUCCESS;
     }
 }

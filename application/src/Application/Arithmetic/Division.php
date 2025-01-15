@@ -20,15 +20,37 @@ readonly class Division implements ArithmeticInterface
 
     public function execute(NumberPair $pair): array
     {
-        $result = $pair->getFirstNumber() - $pair->getSecondNumber();
-        if ($result < 0) {
-            throw new InvalidOperationException(sprintf(
-                "The result of is less %d and %d than zero",
-                $pair->getFirstNumber(),
-                $pair->getSecondNumber()
-            ));
+        try {
+            $result = $this->isDivisible($pair->getFirstNumber(), $pair->getSecondNumber());
+            $this->arithmeticResult->setData($pair->getFirstNumber(), $pair->getSecondNumber(), $result);
+            return $this->arithmeticResult->toArray();
+        } catch (InvalidOperationException $e) {
+            throw $e;
         }
-        $this->arithmeticResult->setData($pair->getFirstNumber(), $pair->getSecondNumber(), $result);
-        return $this->arithmeticResult->toArray();
+    }
+
+    private function isDivisible(int $numerator, int $denominator): int
+    {
+        if ($denominator === 0) {
+            throw new InvalidOperationException(
+                sprintf(
+                    "Division by zero is not allowed. Numbers provided: %d and %d.",
+                    $numerator,
+                    $denominator
+                )
+            );
+        }
+
+        if ($numerator % $denominator !== 0) {
+            throw new InvalidOperationException(
+                sprintf(
+                    "Numbers %d and %d are not divisible without a remainder.",
+                    $numerator,
+                    $denominator
+                )
+            );
+        }
+
+        return $numerator / $denominator;
     }
 }

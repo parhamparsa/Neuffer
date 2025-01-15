@@ -31,14 +31,6 @@ services:
     arguments:
       $csvReader: '@App\Infrastructure\Csv\CsvReader'
 
-#  App\Application\Service\Arithmetic\ArithmeticService:
-#    arguments:
-#      $readCsvService: '@App\Application\Service\Csv\ReadCsvService'
-#      $writeCsvService: '@App\Application\Service\Csv\WriteCsvService'
-#      $logService: '@App\Application\Service\Log\LogService'
-#      $arithmeticFactory: '@App\Application\Factory\ArithmeticFactory'
-#      $numberPairFactory: '@App\Application\Factory\NumberPairFactory'
-
   App\Application\Arithmetic\Addition:
     tags: [ 'app.operation' ]
   App\Application\Arithmetic\Subtraction:
