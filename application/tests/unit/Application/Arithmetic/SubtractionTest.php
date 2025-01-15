@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\unit\Application\Arithmetic;
 
 use App\Application\Arithmetic\Subtraction;
@@ -77,5 +79,4 @@ class SubtractionTest extends TestCase
 
         $this->assertEquals([5, 5, 0], $result);
     }
-
 }

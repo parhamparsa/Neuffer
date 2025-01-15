@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\Service\Arithmetic;
 
 use App\Application\Factory\ArithmeticFactory;

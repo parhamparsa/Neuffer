@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\Service\Csv;
 
 use App\Domain\Csv\CsvReaderInterface;

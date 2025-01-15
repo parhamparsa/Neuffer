@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace unit\Application\Arithmetic;
 
 use App\Application\Arithmetic\Addition;
