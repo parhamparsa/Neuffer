@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\UserInterface\Cli;
 
+use App\Application\Service\Arithmetic\ArithmeticService;
+use App\Application\Service\Csv\ReadCsvService;
 use Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -17,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 final class CalculatorCommand extends Command
 {
-    public function __construct()
+    public function __construct(private readonly ArithmeticService $arithmeticService)
     {
         parent::__construct();
     }
@@ -27,7 +29,8 @@ final class CalculatorCommand extends Command
         $this
             ->setName('csv:import')
             ->setDescription('This command imports csv files')
-            ->addArgument('file', InputArgument::OPTIONAL);
+            ->addArgument('file', InputArgument::REQUIRED)
+            ->addArgument('action', InputArgument::REQUIRED);
     }
 
     /**
@@ -44,7 +47,7 @@ final class CalculatorCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-
+            dd($this->arithmeticService->Process($input->getArgument('file'), $input->getArgument('action')));
         } catch (Exception $exception) {
             return Command::FAILURE;
         }

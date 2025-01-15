@@ -1,0 +1,29 @@
+#!/bin/sh
+[ ! -z "$DEBUG" ] && set -x
+
+if [ "$1" = "e" ]; then
+  [ "$2" = "l" ] && IP=$(ip r | awk '/default/{ print $3 }') || IP="host.docker.internal"
+  export XDEBUG_CONFIG="client_host=${IP}"
+  export XDEBUG_MODE="coverage,debug"
+  export XDEBUG_SESSION=1
+  export PHP_IDE_CONFIG="serverName=localhost"
+  echo -n "xdebug enabled"
+  [ "$2" = "l" ] && echo -e " for linux" || echo -e " for macos"
+
+elif [ "$1" = "d" ]; then
+  unset XDEBUG_CONFIG XDEBUG_SESSION PHP_IDE_CONFIG XDEBUG_MODE
+  echo "xdebug disabled"
+
+else
+  echo -e "\e[93mNotice: \e[0mThis command should be run with source command."
+  echo -e "Usage: source xphp [op] [os]\nop:"
+  echo -e "\te enable xdebug"
+  echo -e "\td disable xdebug\nos:default(m)"
+  echo -e "\tl linux"
+  echo -e "\tm mac:"
+
+  echo "example: source xphp e"
+fi
+
+[ ! -z "$DEBUG" ] && set +x
+unset DEBUG

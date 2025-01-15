@@ -2,6 +2,7 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/application/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/docker/mysql/mysql_data" />
     </content>
     <orderEntry type="inheritedJdk" />
