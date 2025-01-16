@@ -64,8 +64,8 @@ final class CalculatorCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $result = $this->arithmeticService->Process($input->getArgument('file'), $input->getArgument('action'));
-            $output->writeln(json_encode($result, JSON_PRETTY_PRINT));
+            $this->arithmeticService->Process($input->getArgument('file'), $input->getArgument('action'));
+            $output->writeln(json_encode('All fine get your files from final folder'));
         } catch (Exception $exception) {
             $output->writeln($exception->getMessage());
             return Command::FAILURE;
